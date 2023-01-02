@@ -1,3 +1,0 @@
-# Olá Mundo!
-
-Teste teste teste...
