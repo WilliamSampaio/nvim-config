@@ -12,6 +12,7 @@ call plug#begin()
     Plug 'dense-analysis/ale'
     Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
     Plug 'honza/vim-snippets'
+    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 
