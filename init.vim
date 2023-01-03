@@ -13,6 +13,10 @@ call plug#begin()
     Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
     Plug 'honza/vim-snippets'
     Plug 'jiangmiao/auto-pairs'
+    if (has("nvim"))
+        Plug 'nvim-lua/plenary.nvim'
+        Plug 'nvim-telescope/telescope.nvim'
+    endif
 call plug#end()
 
 
@@ -21,10 +25,10 @@ call plug#end()
 " ================================================================================================="
 syntax on           " Enable syntax highlight
 set nu              " Enable line numbers
-set tabstop=4		" Show existing tab with 4 spaces width
-set softtabstop=4	" Show existing tab with 4 spaces width
-set shiftwidth=4	" When indenting with '>', use 4 spaces width
-set expandtab		" On pressing tab, insert 4 spaces
+set tabstop=4       " Show existing tab with 4 spaces width
+set softtabstop=4   " Show existing tab with 4 spaces width
+set shiftwidth=4    " When indenting with '>', use 4 spaces width
+set expandtab       " On pressing tab, insert 4 spaces
 set smarttab        " Insert tabs on the start of a line according to shiftwidth
 set smartindent     " Automatically inserts one extra level of indentation in some cases
 set hidden          " Hides the current buffer when a new file is openned
@@ -112,6 +116,17 @@ let g:ale_fixers = {
 \}
 
 let g:ale_fix_on_save = 1
+
+
+
+if (has("nvim"))
+	" Telescope "
+	" ============================================================================================="
+    nnoremap <leader>ff <cmd>Telescope find_files<cr>
+    nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+    nnoremap <leader>fb <cmd>Telescope buffers<cr>
+    nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+endif
 
 
 
@@ -304,7 +319,7 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> <C-TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
